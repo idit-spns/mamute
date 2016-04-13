@@ -2,13 +2,10 @@ package org.mamute.model;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Cacheable;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -38,6 +35,13 @@ public class Tag {
 	private final User author;
 
 	private Long usageCount = 0l;
+
+	@JoinTable(name = "User_Subscription",
+			inverseJoinColumns=@JoinColumn(name="User_id"),
+			joinColumns=@JoinColumn(name="Tag_id")
+	)
+	@ManyToMany
+	private final Set<User> userSubscription = new HashSet<>();
 	
 	/**
 	 * @deprecated hibernate eyes only
@@ -84,5 +88,20 @@ public class Tag {
 	public void decrementUsage(){
 		this.usageCount --;
 	}
-	
+
+	public void addSubscriber(User user){
+		userSubscription.add(user);
+	}
+
+	public Set<User> getAllSubscribers(){
+		return userSubscription;
+	}
+
+	public boolean isUserSubscribed(User user){
+		return userSubscription.contains(user);
+	}
+
+	public void removeUserSubscription(User user) {
+		userSubscription.remove(user);
+	}
 }

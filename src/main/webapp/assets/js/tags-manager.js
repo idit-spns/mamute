@@ -54,15 +54,6 @@
 
 			if (ajaxResults[term.toLowerCase()] && remoteSearch == 0) {
 				return {};
-			} else if (remoteSearch === 0) {
-				return {
-					text: '<div class="tag-new-list">' + term
-						+ ' <span class="tag-smalltext">(' + Messages.get("tagmanager.create.new") + ')</span>'
-						+ '</div><hr style="margin-top:15px;"/>',
-					slug: term,
-					id: term,
-					newVal: true
-				};
 			}
 		},
 		initSelection: function (element, callback) {

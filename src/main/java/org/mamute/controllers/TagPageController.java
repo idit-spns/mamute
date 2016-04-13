@@ -5,9 +5,7 @@ import javax.inject.Inject;
 import org.mamute.brutauth.auth.rules.ModeratorOnlyRule;
 import org.mamute.dao.TagDAO;
 import org.mamute.dao.TagPageDAO;
-import org.mamute.model.MarkedText;
-import org.mamute.model.Tag;
-import org.mamute.model.TagPage;
+import org.mamute.model.*;
 import org.mamute.validators.TagPageValidator;
 
 import br.com.caelum.brutauth.auth.annotations.CustomBrutauthRules;
@@ -25,6 +23,7 @@ public class TagPageController {
 	@Inject private Result result;
 	@Inject private TagPageDAO tagPages;
 	@Inject private TagPageValidator validator;
+	@Inject private LoggedUser currentUser;
 
 	@Get
 	@CustomBrutauthRules(ModeratorOnlyRule.class)
@@ -73,4 +72,19 @@ public class TagPageController {
 		result.include(tagPage);
 		result.include("hasAbout", tags.hasAbout(tagPage.getTag()));
 	}
+
+	@Post
+	public void toggleUserSubscribeTag(String tagName){
+		Tag tag = tags.findByName(tagName);
+		User current = currentUser.getCurrent();
+		if(!tag.isUserSubscribed(current)){
+			tag.addSubscriber(current);
+		}else {
+			tag.removeUserSubscription(current);
+		}
+		tags.update(tag);
+		result.nothing();
+	}
+
+
 }

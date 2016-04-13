@@ -17,4 +17,8 @@
 	<a href="${linkTo[RankingController].tagRank(tag.uriName)}" title='${t['users.ranking.tag.title']} ${tag.name}' class="icon-award">
 		${t['users.ranking.tag']}
 	</a>
+
+    <a class="subscribe-to-tag" href="#" data-url="${linkTo[TagPageController].toggleUserSubscribeTag(tag.name)}">
+        ${t[tag.isUserSubscribed(currentUser.current) ? 'tag_page.unsubscribe' : 'tag_page.subscribe']}
+    </a>
 </tags:tabs>

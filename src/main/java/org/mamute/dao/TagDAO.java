@@ -96,4 +96,8 @@ public class TagDAO {
 		}
 		return existingTag;
 	}
+
+	public void update(Tag tag){
+		session.update(tag);
+	}
 }

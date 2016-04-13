@@ -107,6 +107,7 @@
 	<script src="/assets/js/question-suggestions.js"></script>
 	<script src="/assets/js/delete-question.js"></script>
 	<script src="/assets/js/ip-blocker.js"></script>
+	<script src="/assets/js/subscribeToTag.js"></script>
 <!-- endbuild -->
 
 <c:if test="${environment.supports('feature.analytics')}" >

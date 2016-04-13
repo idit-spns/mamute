@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.1.56, for slackware-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: brutal_development
 -- ------------------------------------------------------
--- Server version	5.1.56
+-- Server version	5.6.28-0ubuntu0.15.10.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -566,6 +566,24 @@ CREATE TABLE `UserSession` (
   KEY `FK_g1vcu7yf9bjb3kj31y3ghw0jg` (`user_id`),
   CONSTRAINT `FK_g1vcu7yf9bjb3kj31y3ghw0jg` FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `User_Subscription`
+--
+
+DROP TABLE IF EXISTS `User_Subscription`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `User_Subscription` (
+  `Tag_id` bigint(20) NOT NULL,
+  `User_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`Tag_id`,`User_id`),
+  KEY `FK_qyj9wyxjaonxacie61grra8gs` (`User_id`),
+  KEY `FK_g2idx4ptndka471xclq0r1cs7` (`Tag_id`),
+  CONSTRAINT `FK_g2idx4ptndka471xclq0r1cs7` FOREIGN KEY (`Tag_id`) REFERENCES `Tag` (`id`),
+  CONSTRAINT `FK_qyj9wyxjaonxacie61grra8gs` FOREIGN KEY (`User_id`) REFERENCES `Users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
