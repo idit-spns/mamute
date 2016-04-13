@@ -247,9 +247,8 @@ public class LDAPApi {
 		//update moderator status
 		if (isNotEmpty(moderatorGroup) && ldap.getGroups(ldapUser).contains(moderatorGroup)) {
 			user = user.asModerator();
-		} else {
-			user.removeModerator();
 		}
+
 		updateAvatarImage(ldap, ldapUser, user);
 
 		users.save(user);

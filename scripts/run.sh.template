@@ -5,12 +5,13 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 MAMUTE_DIR=$SCRIPT_DIR
 
 TIMESTAMP=BUILD_TIMESTAMP
-
+PORT=8080
 WEB_INF=${SCRIPT_DIR}/WEB-INF
+VRAPTOR_ENV=production
 
-java -cp ${WEB_INF}/classes/:${WEB_INF}/lib/* \
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms2G -Xmx2G -XX:PermSize=512m -XX:MaxPermSize=128M -cp ${WEB_INF}/classes/:${WEB_INF}/lib/* \
     -Ddeploy.timestamp=$TIMESTAMP \
     -Dvraptor.webappdir=${MAMUTE_DIR} \
     ${MAMUTE_OPTS} \
     br.com.caelum.vraptor.server.Main \
-	not-grunt
+	not-grunt \

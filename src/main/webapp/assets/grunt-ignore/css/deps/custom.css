@@ -1,0 +1,44 @@
+.big-logo {
+    background-image: url(../../imgs/sapiens-logo.png);
+}
+
+.second-header {
+	background-color: #00ACEC;
+}
+
+.nav-item .current{
+	background-color: #00ACEC;
+}
+
+.footer.dark-footer {
+	background-color: #FFFFFF;
+}
+
+.footer-vraptor a{
+    color: #00ACEC;
+}
+
+.footer-menu a{
+	color: #00ACEC;
+}
+
+a{
+	color: #00ACEC;
+}
+
+.button:hover {
+    background-color: #B1EAFF;
+}
+
+a.button.ask-a-question:hover {
+    background-color: #6481B1;
+}
+
+a.button.ask-a-question {
+    background-color: #28497E;
+    border-bottom: 1px solid #28497E;
+}
+
+.header{
+	box-shadow: 0px 5px 3px #888888;
+}
